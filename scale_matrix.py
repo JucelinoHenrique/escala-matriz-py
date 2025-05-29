@@ -56,3 +56,41 @@ def get_matrix_from_user():
                 print("Error: One or more elements in the row are not valid numbers. Please re-enter the entire row.")
                 
     return matrix
+
+def get_scale_factor_from_user():
+    """
+         Nessa parte o usuario dá entrada no fator de escalonamento. 
+    """    
+    while True:
+        try:
+            scale_factor_str = input("Enter the scale factor: ")
+            scale_factor = float(scale_factor_str)
+            return scale_factor
+        except ValueError:
+            print("Invalid input. Please enter a numeric value for the scale factor.")
+
+if __name__ == "__main__":
+    print("Matrix Scaling Tool")
+    print("-------------------")
+
+    user_matrix = get_matrix_from_user()
+    if user_matrix is None: 
+        print("Failed to get matrix input. Exiting.")
+    else:
+        print("\nInput Matrix you entered:")
+        for row in user_matrix:
+            print(row)
+
+        user_scale_factor = get_scale_factor_from_user()
+
+        if user_scale_factor is not None:
+            print(f"\nScaling matrix by factor: {user_scale_factor}")
+            resulting_matrix = scale_matrix(user_matrix, user_scale_factor)
+
+            if resulting_matrix is not None:
+                print("\nResulting Scaled Matrix:")
+                print(resulting_matrix)
+            else:
+                print("Could not scale the matrix due to an error during the scaling process.")
+        else:
+            print("Failed to get scale factor. Exiting.")
